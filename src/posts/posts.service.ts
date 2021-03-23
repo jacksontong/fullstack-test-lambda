@@ -13,7 +13,12 @@ export class PostsService {
   ) {}
 
   create(createPostDto: CreatePostDto) {
-    return 'This action adds a new post';
+    const post = new Post();
+    post.title = createPostDto.title;
+    post.body = createPostDto.body;
+    post.image = createPostDto.image;
+
+    return this.postsRepository.save(post);
   }
 
   findAll() {
@@ -25,7 +30,7 @@ export class PostsService {
   }
 
   update(id: number, updatePostDto: UpdatePostDto) {
-    return `This action updates a #${id} post`;
+    return this.postsRepository.update(id, updatePostDto);
   }
 
   remove(id: number) {
