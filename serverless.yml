@@ -12,19 +12,28 @@
 # Happy Coding!
 
 service: fullstack-test
-# app and org for use with dashboard.serverless.com
-app: myapp
-org: jacksontong
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
-frameworkVersion: "2"
+frameworkVersion: '2'
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-plugin-optimize
+  - serverless-offline
 
 provider:
   name: aws
   runtime: nodejs12.x
   lambdaHashingVersion: 20201221
 
+package:
+  individually: true
+
 functions:
   hello:
-    handler: handler.hello
+    handler: src/main.handler
+    events:
+      - http:
+          method: any
+          path: /{proxy+}
