@@ -17,11 +17,11 @@ export class PostsService {
   }
 
   findAll() {
-    return `This action returns all posts`;
+    return this.postsRepository.find();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} post`;
+    return this.postsRepository.findOne(id);
   }
 
   update(id: number, updatePostDto: UpdatePostDto) {
@@ -29,6 +29,6 @@ export class PostsService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} post`;
+    this.postsRepository.delete(id);
   }
 }
