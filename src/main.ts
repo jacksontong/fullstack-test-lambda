@@ -30,8 +30,17 @@ async function bootstrapServer() {
         AppModule,
         new ExpressAdapter(expressApp),
       );
+
+      nestApp.enableCors({
+        origin: true,
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        preflightContinue: false,
+        optionsSuccessStatus: 204,
+      });
+
       nestApp.use(eventContext());
       await nestApp.init();
+
       cachedServer = createServer(expressApp, undefined, binaryMimeTypes);
     } catch (error) {
       return Promise.reject(error);
