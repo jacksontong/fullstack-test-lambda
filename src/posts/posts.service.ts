@@ -39,7 +39,7 @@ export class PostsService {
   }
 
   findAll() {
-    return this.postsRepository.find();
+    return this.postsRepository.find({ order: { id: 'DESC' } });
   }
 
   findOne(id: number) {
