@@ -29,4 +29,19 @@ export class FirestoreService {
   set(collection: string, path: string, data: FirebaseFirestore.DocumentData) {
     return this.firestore.collection(collection).doc(path).set(data);
   }
+
+  /**
+   * Update data of given doc id
+   * @param collection
+   * @param id
+   * @param data
+   * @returns
+   */
+  update(
+    collection: string,
+    path: string,
+    data: FirebaseFirestore.DocumentData,
+  ) {
+    return this.firestore.collection(collection).doc(path).update(data);
+  }
 }

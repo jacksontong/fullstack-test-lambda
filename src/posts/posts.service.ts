@@ -49,7 +49,7 @@ export class PostsService {
   update(id: number, updatePostDto: UpdatePostDto) {
     return Promise.all([
       this.postsRepository.update(id, updatePostDto),
-      this.firestoreService.set(
+      this.firestoreService.update(
         this.FIRESTORE_COLLECTION,
         id.toString(),
         _.chain(updatePostDto)
